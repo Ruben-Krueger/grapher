@@ -70,7 +70,7 @@ var names = ['10.29.160.211','10.29.160.2','10.27.160.2','10.29.160.169','35.201
 
     var i,
         s,
-        N = names.size(),
+        N = names.length,
         E = 30,
         g = {
             nodes: [],
@@ -89,8 +89,8 @@ var names = ['10.29.160.211','10.29.160.2','10.27.160.2','10.29.160.169','35.201
     for (i = 0; i < E; i++)
         g.edges.push({
             id: 'e' + i,
-            source: names[Math.random()*names.size()],
-            target: names[Math.random()*names.size()],
+            source: names[Math.random()*names.length],
+            target: names[Math.random()*names.length],
             size: Math.random(),
             color: colors[i % colors.size],
             hover_color: '#000'
