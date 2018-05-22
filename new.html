@@ -64,11 +64,16 @@
     <div id="graph-container"></div>
 </div>
 <script>
+var colors = [];
+var names = [10.29.160.211,10.29.160.2,10.27.160.2,10.29.160.169,35.201.97.85,10.27.160.3,10.29.160.169,35.201.97.85,10.29.176.2,10.29.160.2,10.27.163.94,10.27.163.94,Cisco_7c:29:e0,10.27.160.2,10.27.160.3,10.29.160.2,10.29.176.2,10.29.160.212,10.29.160.212,10.27.160.2,10.27.160.3,10.29.160.192,10.29.160.192,10.29.160.192,10.29.160.192,10.29.160.169];
+
+var src = [];
+var target = [];
 
 
     var i,
         s,
-        N = src.length,
+        N = 27,
         E = 200,
         g = {
             nodes: [],
@@ -78,7 +83,7 @@
     for (i = 0; i < N; i++)
         g.nodes.push({
             id: 'n' + i,
-            label: 'Node ' + i,
+            label: names[i],
             x: Math.random(),
             y: Math.random(),
             size: Math.random(),
@@ -90,7 +95,6 @@
             source: 'n' + (Math.random() * N | 0),
             target: 'n' + (Math.random() * N | 0),
             size: Math.random(),
-            type: 'curve',
             color: '#ccc',
             hover_color: '#000'
         });
