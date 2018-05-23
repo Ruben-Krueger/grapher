@@ -60,7 +60,16 @@
     <style>
     .box {
       padding-left: 30;
+        margin: 13px;
+
     }
+    h1 {
+       display: inline;
+    }
+    button {
+      padding: 20;
+    }
+
   
     #graph-container {
       top: 0;
@@ -72,10 +81,10 @@
   </style>
 
   <div class = "box">
-<button type="button" class="btn btn-primary ">LOAD NEW DATA</button>
-<button type="button" class="btn btn-primary ">VIEW CONNECTIONS</button>
-  <button type="button" class="btn btn-danger">PING</button>
-</div>
+    <h1>Electrical system</h1>
+<button type="button" class="btn btn-primary float-right">LOAD NEW DATA</button>
+<button type="button" class="btn btn-primary float-right">VIEW CONNECTIONS</button>
+  <button type="button" class="btn btn-danger float-right">PING</button>
 
   <div id="graph-container"></div>
 </div>
