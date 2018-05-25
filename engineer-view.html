@@ -53,9 +53,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
-    <!--<link href="fine-uploader/fine-uploader-gallery.css" rel="stylesheet">-->
-
-    <!--<script src="fine-uploader/fine-uploader.js"></script>-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 </head>
 
@@ -152,10 +150,10 @@
 
 
     <div class="side-panel jumbotron">
-        <h3 class="text-center">Missions</h3>
-        <h4 id="m1">Escort</h4>
-        <h4 id="m2">Patrol South China Sea</h4>
-        <h4 id="m3">Resupply</h4>
+        <h4 class="text-center" id="title">Select a node to view vulnerabilities</h4>
+        <h4 id="data">
+
+        </h4>
     </div>
 
     <div class="right-panel jumbotron">
@@ -169,7 +167,7 @@
     <div class="right-panel bottom jumbotron">
         <h3 class="text-center">Key</h3>
         <span>Switch</span><br>
-        <span style="color: darkcyan">LPC</span><br>
+        <span style="color: darkcyan">PLC</span><br>
         <span style="color: darkred">Server</span><br>
         <span style="color: chocolate">Generator</span>
     </div>
@@ -182,18 +180,7 @@
 <!--<script src="upload.js"></script>-->
 <script src ="graph.js"></script>
 <script>
-    document.getElementById('m1').onclick = changeColor("m1");
-    document.getElementById('m2').onclick = changeColor("m2");
-    document.getElementById('m3').onclick = changeColor("m3");
 
-    function changeColor(mission) {
-        document.getElementById("m1").style.color = "black";
-        document.getElementById("m2").style.color = "black";
-        document.getElementById("m3").style.color = "black";
-        document.getElementById(mission).style.color = "red";
-
-        return false;
-    }
 
 
     var slider = document.getElementById("myRange");

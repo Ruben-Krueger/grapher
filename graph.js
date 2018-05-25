@@ -10,6 +10,23 @@ var i,
         edges: []
     };
 
+function generate_vulnerability() {
+    var x = Math.random();
+    if(x < .4) {
+        return "Default Password"
+    }
+    else if(x >= .4 && x < .7) {
+        return "Outdated firmware"
+    }
+    else {
+        return "Unknown"
+    }
+
+
+}
+
+
+
 var n_switches = 6;
 var switch_color = "#101011";
 var switch_radius = .5
@@ -22,7 +39,8 @@ for (i = 1; i <= n_switches; i++)
         y: Math.random(),
         size: switch_radius,
         color: switch_color,
-        critical: true
+        critical: true,
+        vulnerability: generate_vulnerability()
     });
 
 
@@ -84,6 +102,9 @@ s = new sigma({
 // Bind the events:
 s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
     console.log(e.type, e.data.node.label, e.data.captor);
+    document.getElementById('title').innerHTML = e.data.node.label
+    document.getElementById('data').innerHTML = e.data.node.vulnerability;
+
 });
 s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
     console.log(e.type, e.data.edge, e.data.captor);
