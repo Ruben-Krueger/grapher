@@ -1,0 +1,42 @@
+
+h1 {
+    display: inline;
+}
+button {
+    padding: 20px;
+    display: inline;
+}
+
+.side-panel {
+    top: 100px;
+    left: 30px;
+    width: 200px;
+    height: 500px;
+    position: absolute;
+    padding: 10px;
+    z-index: 100;
+}
+
+.right-panel{
+    top: 100px;
+    right: 30px;
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    padding: 10px;
+    z-index: 100;
+}
+
+
+#graph-container {
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+
+.top-panel {
+    margin: 10px;
+}

@@ -1,3 +1,8 @@
+
+<title>Grapher</title>
+
+
+
 <!-- START SIGMA IMPORTS -->
 <script src="src/sigma.core.js"></script>
 <script src="src/conrad.js"></script>
@@ -45,85 +50,153 @@
 <script src="src/misc/sigma.misc.bindEvents.js"></script>
 <script src="src/misc/sigma.misc.bindDOMEvents.js"></script>
 <script src="src/misc/sigma.misc.drawHovers.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+
+
+<style>
+    .box {
+        padding-left: 30px;
+        margin: 13px;
+
+    }
+    h1 {
+        display: inline;
+    }
+    button {
+        padding: 20px;
+    }
+
+
+    #graph-container {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: absolute;
+    }
+</style>
+
 
 
 <!-- END SIGMA IMPORTS -->
-
-
 <div id="container">
-    <style>
-        #graph-container {
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            position: absolute;
-        }
-    </style>
-    <div id="graph-container"></div>
-</div>
-<script>
-      
-var colors = ["#800080","#aaf442","#c12222","#FF00FF","#000080","#0000FF","#008080","#C0C0C0"];
 
-var names = ['10.29.160.211','10.29.160.2','10.27.160.2','10.29.160.169','35.201.97.85','10.27.160.3','10.29.176.2','10.27.163.94','Cisco_7c:29:e0','10.29.160.212'];
 
-    var i,
-        s,
-        N = names.length,
-        E = 30,
-        g = {
-            nodes: [],
-            edges: []
-        };
 
-    for (i = 0; i < N; i++)
-        g.nodes.push({
-            id: names[i],
-            label: names[i],
-            x: Math.random(),
-            y: Math.random(),
-            size: Math.random(),
-            color: "#000000"
+
+    <div class = "box">
+        <h1>Electrical system</h1>
+        <button type="button" class="btn btn-primary float-right">LOAD NEW DATA</button>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">VIEW CONNECTIONS</button>
+        <button type="button" class="btn btn-danger float-right">PING</button>
+
+        <div id="graph-container"></div>
+
+        <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script>
+
+
+
+        /**
+         * This example is a copy of "basic.html", but with event bindings after.
+         * Open your browser's console to see the "click", "overNode" and
+         * "outNode" events logged.
+         */
+        var i,
+            s,
+            N = 20,
+            E = 200,
+            g = {
+                nodes: [],
+                edges: []
+            };
+
+
+
+        for (i = 0; i < N; i++)
+            g.nodes.push({
+                id: 'n' + i,
+                label: 'Node ' + i,
+                x: Math.random(),
+                y: Math.random(),
+                size: Math.random(),
+                color: '#666'
+            });
+
+        for (i = 0; i < E; i++)
+            g.edges.push({
+                id: 'e' + i,
+                source: 'n' + (Math.random() * N | 0),
+                target: 'n' + (Math.random() * N | 0),
+                size: Math.random(),
+                color: '#ccc',
+                type: 'curve',
+                hover_color: '#000'
+            });
+
+
+
+        s = new sigma({
+            graph: g,
+            renderer: {
+                container: document.getElementById('graph-container'),
+                type: 'canvas'
+            },
+            settings: {
+                doubleClickEnabled: false,
+                minEdgeSize: 0.5,
+                maxEdgeSize: 4,
+                enableEdgeHovering: true,
+                edgeHoverColor: 'edge',
+                defaultEdgeHoverColor: '#000',
+                edgeHoverSizeRatio: 1,
+                edgeHoverExtremities: true,
+            }
         });
-    for (i = 0; i < E; i++)
-        g.edges.push({
-            id: 'e' + i,
-            source: names[Math.random()*(names.length -1)],
-            target: names[Math.random()*(names.length-1)],
-            size: Math.random(),
-            color: colors[i % colors.size],
-            hover_color: '#000'
-        });
 
-    s = new sigma({
-        graph: g,
-        renderer: {
-            container: document.getElementById('graph-container'),
-            type: 'canvas'
-        },
-        settings: {
-            doubleClickEnabled: false,
-            minEdgeSize: 0.5,
-            maxEdgeSize: 4,
-            enableEdgeHovering: true,
-            edgeHoverColor: 'edge',
-            defaultEdgeHoverColor: '#000',
-            edgeHoverSizeRatio: 1,
-            edgeHoverExtremities: true
-        }
-    });
-    // Bind the events:
-    s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
-        console.log(e.type, e.data.node.label, e.data.captor);
-    });
-    s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
-        console.log(e.type, e.data.edge, e.data.captor);
-    });
-    s.bind('clickStage', function(e) {
-        console.log(e.type, e.data.captor);
-    });
-    s.bind('doubleClickStage rightClickStage', function(e) {
-        console.log(e.type, e.data.captor);
-    });
-</script>
+        // Bind the events:
+        s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
+            console.log(e.type, e.data.node.label, e.data.captor);
+        });
+        s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
+            console.log(e.type, e.data.edge, e.data.captor);
+        });
+        s.bind('clickStage', function(e) {
+            console.log(e.type, e.data.captor);
+        });
+        s.bind('doubleClickStage rightClickStage', function(e) {
+            console.log(e.type, e.data.captor);
+        });
+    </script>

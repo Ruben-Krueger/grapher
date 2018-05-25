@@ -1,207 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grapher</title>
+  <script src="src/sigma.core.js"></script>
+  <script src="src/conrad.js"></script>
+  <script src="src/utils/sigma.utils.js"></script>
+  <script src="src/utils/sigma.polyfills.js"></script>
+  <script src="src/sigma.settings.js"></script>
+  <script src="src/classes/sigma.classes.dispatcher.js"></script>
+  <script src="src/classes/sigma.classes.configurable.js"></script>
+  <script src="src/classes/sigma.classes.graph.js"></script>
+  <script src="src/classes/sigma.classes.camera.js"></script>
+  <script src="src/classes/sigma.classes.quad.js"></script>
+  <script src="src/classes/sigma.classes.edgequad.js"></script>
+  <script src="src/captors/sigma.captors.mouse.js"></script>
+  <script src="src/captors/sigma.captors.touch.js"></script>
+  <script src="src/renderers/sigma.renderers.canvas.js"></script>
+  <script src="src/renderers/sigma.renderers.webgl.js"></script>
+  <script src="src/renderers/sigma.renderers.svg.js"></script>
+  <script src="src/renderers/sigma.renderers.def.js"></script>
+  <script src="src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+  <script src="src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+  <script src="src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+  <script src="src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+  <script src="src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+  <script src="src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+  <script src="src/renderers/svg/sigma.svg.utils.js"></script>
+  <script src="src/renderers/svg/sigma.svg.nodes.def.js"></script>
+  <script src="src/renderers/svg/sigma.svg.edges.def.js"></script>
+  <script src="src/renderers/svg/sigma.svg.edges.curve.js"></script>
+  <script src="src/renderers/svg/sigma.svg.labels.def.js"></script>
+  <script src="src/renderers/svg/sigma.svg.hovers.def.js"></script>
+  <script src="src/middlewares/sigma.middlewares.rescale.js"></script>
+  <script src="src/middlewares/sigma.middlewares.copy.js"></script>
+  <script src="src/misc/sigma.misc.animation.js"></script>
+  <script src="src/misc/sigma.misc.bindEvents.js"></script>
+  <script src="src/misc/sigma.misc.bindDOMEvents.js"></script>
+  <script src="src/misc/sigma.misc.drawHovers.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+</head>
 
-<title>Grapher</title>
+<body>
 
-
-
-<!-- START SIGMA IMPORTS -->
-<script src="src/sigma.core.js"></script>
-<script src="src/conrad.js"></script>
-<script src="src/utils/sigma.utils.js"></script>
-<script src="src/utils/sigma.polyfills.js"></script>
-<script src="src/sigma.settings.js"></script>
-<script src="src/classes/sigma.classes.dispatcher.js"></script>
-<script src="src/classes/sigma.classes.configurable.js"></script>
-<script src="src/classes/sigma.classes.graph.js"></script>
-<script src="src/classes/sigma.classes.camera.js"></script>
-<script src="src/classes/sigma.classes.quad.js"></script>
-<script src="src/classes/sigma.classes.edgequad.js"></script>
-<script src="src/captors/sigma.captors.mouse.js"></script>
-<script src="src/captors/sigma.captors.touch.js"></script>
-<script src="src/renderers/sigma.renderers.canvas.js"></script>
-<script src="src/renderers/sigma.renderers.webgl.js"></script>
-<script src="src/renderers/sigma.renderers.svg.js"></script>
-<script src="src/renderers/sigma.renderers.def.js"></script>
-<script src="src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
-<script src="src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
-<script src="src/renderers/webgl/sigma.webgl.edges.def.js"></script>
-<script src="src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
-<script src="src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.labels.def.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edges.def.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
-<script src="src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
-<script src="src/renderers/svg/sigma.svg.utils.js"></script>
-<script src="src/renderers/svg/sigma.svg.nodes.def.js"></script>
-<script src="src/renderers/svg/sigma.svg.edges.def.js"></script>
-<script src="src/renderers/svg/sigma.svg.edges.curve.js"></script>
-<script src="src/renderers/svg/sigma.svg.labels.def.js"></script>
-<script src="src/renderers/svg/sigma.svg.hovers.def.js"></script>
-<script src="src/middlewares/sigma.middlewares.rescale.js"></script>
-<script src="src/middlewares/sigma.middlewares.copy.js"></script>
-<script src="src/misc/sigma.misc.animation.js"></script>
-<script src="src/misc/sigma.misc.bindEvents.js"></script>
-<script src="src/misc/sigma.misc.bindDOMEvents.js"></script>
-<script src="src/misc/sigma.misc.drawHovers.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
- 
-
-
-
-
-
-<!-- END SIGMA IMPORTS -->
-<div id="container">
-
-
-
-
-
-
-    <style>
-    .box {
-      padding-left: 30;
-        margin: 13px;
-
-    }
-    h1 {
-       display: inline;
-    }
-    button {
-      padding: 20;
-    }
-
-  
-    #graph-container {
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      position: absolute;
-    }
-  </style>
-
-  <div class = "box">
-    <h1>Electrical system</h1>
-<button type="button" class="btn btn-primary float-right">LOAD NEW DATA</button>
-<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">VIEW CONNECTIONS</button>
-  <button type="button" class="btn btn-danger float-right">PING</button>
-
-  <div id="graph-container"></div>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip-demo"]').tooltip();
+    });
+</script>
 
 <div class="container">
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
+  <div class="top-panel">
+    <span class="h1">System A</span>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#help">
+      HELP
+    </button>
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#Modal-vert-center-demo">
+      LOAD NEW DATA
+    </button>
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#Modal-vert-center-demo">
+      VIEW CONNECTIONS
+    </button>
+    <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#Modal-vert-center-demo">
+      PING
+    </button>
+  </div>
+
+  <!-- Help Modal -->
+  <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h5 class="modal-title" id="help-">Help</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+
         </div>
       </div>
-      
     </div>
   </div>
-  
-</div> 
 
 
+
+  <!-- Modal -->
+  <div class="modal fade" id="Modal-vert-center-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-vert-center-demo-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="Modal-vert-center-demo-label">Data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ..
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="side-panel jumbotron">
+    <h3 class="text-center">Missions</h3>
+    <h4>Escort</h4>
+    <h4>Patrol South China Sea</h4>
+    <h4>Resupply</h4>
+  </div>
+
+  <div class="right-panel jumbotron">
+    <h3 class="text-center">Settings</h3>
+
+  </div>
 </div>
+
+
+<div id="graph-container"></div>
 
 <script>
 
 
-	
-/**
- * This example is a copy of "basic.html", but with event bindings after.
- * Open your browser's console to see the "click", "overNode" and
- * "outNode" events logged.
- */
-var i,
-    s,
-    N = 20,
-    E = 200,
-    g = {
-      nodes: [],
-      edges: []
-    };
-	
-	
-	
-for (i = 0; i < N; i++)
- g.nodes.push({
-   id: 'n' + i,
-   label: 'Node ' + i,
-   x: Math.random(),
-   y: Math.random(),
-   size: Math.random(),
-   color: '#666'
- });
+    var i,
+        s,
+        N = 20,
+        E = 200,
+        g = {
+            nodes: [],
+            edges: []
+        };
 
-for (i = 0; i < E; i++)
- g.edges.push({
-   id: 'e' + i,
-   source: 'n' + (Math.random() * N | 0),
-   target: 'n' + (Math.random() * N | 0),
-   size: Math.random(),
-   color: '#ccc',
-   type: 'curve',
-   hover_color: '#000'
- });
-	
-	
 
-s = new sigma({
-  graph: g,
-  renderer: {
-    container: document.getElementById('graph-container'),
-    type: 'canvas'
-  },
-  settings: {
-    doubleClickEnabled: false,
-    minEdgeSize: 0.5,
-    maxEdgeSize: 4,
-    enableEdgeHovering: true,
-    edgeHoverColor: 'edge',
-    defaultEdgeHoverColor: '#000',
-    edgeHoverSizeRatio: 1,
-    edgeHoverExtremities: true,
-  }
-});
 
-// Bind the events:
-s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
-  console.log(e.type, e.data.node.label, e.data.captor);
-});
-s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
-  console.log(e.type, e.data.edge, e.data.captor);
-});
-s.bind('clickStage', function(e) {
-  console.log(e.type, e.data.captor);
-});
-s.bind('doubleClickStage rightClickStage', function(e) {
-  console.log(e.type, e.data.captor);
-});
+    for (i = 0; i < N; i++)
+        g.nodes.push({
+            id: 'n' + i,
+            label: 'Node ' + i,
+            x: Math.random(),
+            y: Math.random(),
+            size: Math.random(),
+            color: '#666'
+        });
+
+    for (i = 0; i < E; i++)
+        g.edges.push({
+            id: 'e' + i,
+            source: 'n' + (Math.random() * N | 0),
+            target: 'n' + (Math.random() * N | 0),
+            size: Math.random(),
+            color: '#ccc',
+            type: 'curve',
+            hover_color: '#000'
+        });
+
+
+    s = new sigma({
+        graph: g,
+        renderer: {
+            container: document.getElementById('graph-container'),
+            type: 'canvas'
+        },
+        settings: {
+            doubleClickEnabled: false,
+            minEdgeSize: 0.5,
+            maxEdgeSize: 4,
+            enableEdgeHovering: true,
+            edgeHoverColor: 'edge',
+            defaultEdgeHoverColor: '#000',
+            edgeHoverSizeRatio: 1,
+            edgeHoverExtremities: true
+        }
+    });
+
+    // Bind the events:
+    s.bind('overNode outNode clickNode doubleClickNode rightClickNode', function(e) {
+        console.log(e.type, e.data.node.label, e.data.captor);
+    });
+    s.bind('overEdge outEdge clickEdge doubleClickEdge rightClickEdge', function(e) {
+        console.log(e.type, e.data.edge, e.data.captor);
+    });
+    s.bind('clickStage', function(e) {
+        console.log(e.type, e.data.captor);
+    });
+    s.bind('doubleClickStage rightClickStage', function(e) {
+        console.log(e.type, e.data.captor);
+    });
 </script>
+
+
+
+</body>
+</html>
