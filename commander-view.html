@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grapher</title>
+    <script src="src/sigma.core.js"></script>
+    <script src="src/conrad.js"></script>
+    <script src="src/utils/sigma.utils.js"></script>
+    <script src="src/utils/sigma.polyfills.js"></script>
+    <script src="src/sigma.settings.js"></script>
+    <script src="src/classes/sigma.classes.dispatcher.js"></script>
+    <script src="src/classes/sigma.classes.configurable.js"></script>
+    <script src="src/classes/sigma.classes.graph.js"></script>
+    <script src="src/classes/sigma.classes.camera.js"></script>
+    <script src="src/classes/sigma.classes.quad.js"></script>
+    <script src="src/classes/sigma.classes.edgequad.js"></script>
+    <script src="src/captors/sigma.captors.mouse.js"></script>
+    <script src="src/captors/sigma.captors.touch.js"></script>
+    <script src="src/renderers/sigma.renderers.canvas.js"></script>
+    <script src="src/renderers/sigma.renderers.webgl.js"></script>
+    <script src="src/renderers/sigma.renderers.svg.js"></script>
+    <script src="src/renderers/sigma.renderers.def.js"></script>
+    <script src="src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+    <script src="src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+    <script src="src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+    <script src="src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+    <script src="src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+    <script src="src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+    <script src="src/renderers/svg/sigma.svg.utils.js"></script>
+    <script src="src/renderers/svg/sigma.svg.nodes.def.js"></script>
+    <script src="src/renderers/svg/sigma.svg.edges.def.js"></script>
+    <script src="src/renderers/svg/sigma.svg.edges.curve.js"></script>
+    <script src="src/renderers/svg/sigma.svg.labels.def.js"></script>
+    <script src="src/renderers/svg/sigma.svg.hovers.def.js"></script>
+    <script src="src/middlewares/sigma.middlewares.rescale.js"></script>
+    <script src="src/middlewares/sigma.middlewares.copy.js"></script>
+    <script src="src/misc/sigma.misc.animation.js"></script>
+    <script src="src/misc/sigma.misc.bindEvents.js"></script>
+    <script src="src/misc/sigma.misc.bindDOMEvents.js"></script>
+    <script src="src/misc/sigma.misc.drawHovers.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <!--<link href="fine-uploader/fine-uploader-gallery.css" rel="stylesheet">-->
+
+    <!--<script src="fine-uploader/fine-uploader.js"></script>-->
+
+</head>
+
+<body>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip-demo"]').tooltip();
+    });
+</script>
+
+<div class="container">
+    <div class="top-panel">
+        <span class="h1">System A</span>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#help">
+            HELP
+        </button>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#load">
+            LOAD NEW DATA
+        </button>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#Modal-vert-center-demo">
+            VIEW CONNECTIONS
+        </button>
+        <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#Modal-vert-center-demo">
+            PING
+        </button>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="help" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="help-">Help</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- file Modal -->
+    <div class="modal fade" id="load" tabindex="-1" role="dialog" aria-labelledby="Load New File" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="file-">Load New Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Files must be in JSON format.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal-vert-center-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-vert-center-demo-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Modal-vert-center-demo-label">Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ..
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="side-panel jumbotron">
+        <h3 class="text-center">Missions</h3>
+        <h4 id="m1">Escort</h4>
+        <h4 id="m2">Patrol South China Sea</h4>
+        <h4 id="m3">Resupply</h4>
+    </div>
+
+    <div class="right-panel jumbotron">
+        <h3 class="text-center">Settings</h3>
+        <!--<div class="slidecontainer">-->
+        <!--<input type="range" min="1" max="3" value="2" class="slider" id="myRange">-->
+        <!--<p><strong>Abstract &nbsp; Detailed</strong></p>-->
+        <!--</div>-->
+    </div>
+
+    <div class="right-panel bottom jumbotron">
+        <h3 class="text-center">Key</h3>
+        <span>Switch</span><br>
+        <span style="color: darkcyan">LPC</span><br>
+        <span style="color: darkred">Server</span><br>
+        <span style="color: chocolate">Generator</span>
+    </div>
+    <!--<img src="ship.jpg" alt="Ship">-->
+</div>
+
+
+<div id="graph-container"></div>
+
+<!--<script src="upload.js"></script>-->
+<script src ="graph.js"></script>
+<script>
+    document.getElementById('m1').onclick = changeColor("m1");
+    document.getElementById('m2').onclick = changeColor("m2");
+    document.getElementById('m3').onclick = changeColor("m3");
+
+    function changeColor(mission) {
+        document.getElementById("m1").style.color = "black";
+        document.getElementById("m2").style.color = "black";
+        document.getElementById("m3").style.color = "black";
+        document.getElementById(mission).style.color = "red";
+
+        return false;
+    }
+
+
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    };
+
+
+</script>
+
+
+
+</body>
+</html>
