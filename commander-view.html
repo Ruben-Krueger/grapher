@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Grapher</title>
+    <title>Mission Critical</title>
     <script src="src/sigma.core.js"></script>
     <script src="src/conrad.js"></script>
     <script src="src/utils/sigma.utils.js"></script>
@@ -67,7 +67,7 @@
 
 <div class="container">
     <div class="top-panel">
-        <span class="h1">System A</span>
+        <span class="h1">Mission: Minesweeping </span>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#help">
             HELP
@@ -150,7 +150,7 @@
 
 
     <div class="side-panel jumbotron">
-        <h3 class="text-center">Missions</h3>
+        <h3 class="text-center">Missions Components</h3>
         <h4 id="m1">Escort</h4>
         <h4 id="m2">Patrol South China Sea</h4>
         <h4 id="m3">Resupply</h4>
@@ -177,22 +177,8 @@
 
 <div id="graph-container"></div>
 
-<!--<script src="upload.js"></script>-->
-<script src ="graph.js"></script>
+<script src ="commander.js"></script>
 <script>
-    document.getElementById('m1').onclick = changeColor("m1");
-    document.getElementById('m2').onclick = changeColor("m2");
-    document.getElementById('m3').onclick = changeColor("m3");
-
-    function changeColor(mission) {
-        document.getElementById("m1").style.color = "black";
-        document.getElementById("m2").style.color = "black";
-        document.getElementById("m3").style.color = "black";
-        document.getElementById(mission).style.color = "red";
-
-        return false;
-    }
-
 
     var slider = document.getElementById("myRange");
     var output = document.getElementById("demo");
