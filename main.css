@@ -144,3 +144,16 @@ input:checked + .slider:before {
 .btn-space {
     margin-right: 5px;
 }
+
+
+canvas {
+    display: block;
+    float: left;
+}
+
+.graphs {
+
+
+    /* make sure we contain the floats */
+    overflow: auto;
+}

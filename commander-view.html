@@ -3,10 +3,11 @@
 <head>
     <title>Commander View - Mission Critical</title>
     <link rel="stylesheet" href="main.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -74,6 +75,15 @@
         </div>
     </div>
 
+    <div class="dashboard">
+        <h4 style="color: red">Drug Interdiction - High Risk</h4>
+        <h4 style="color: yellow">Wartime Training Exercises - Medium Risk</h4>
+        <h4 style="color: yellow">Flight Operations - Medium Risk</h4>
+        <h4 style="color: green">Freedom of Navigation Operations - Low Risk</h4>
+    <div class="graphs">
+        <canvas id="doughnut-chart" width="400" height="400"></canvas>
+        <canvas id="second-chart" width="400" height="400"></canvas>
+    </div>
 
     <div id="demo" class="carousel slide" data-ride="carousel" data-interval ="false">
 
@@ -88,13 +98,22 @@
         <div class="carousel-inner">
             <div class="carousel-item active jumbotron">
                 <h3 class="text-center">Freedom of Navigation Operations</h3>
-                <h3>Known vulnerabilities </h3>
+                <h5>Critical Systems </h5>
+
+                <p>Starboard Boat Launch Systems 65 Vulnerabilities</p>
+                <p>Aviation Systems 14 Vulnerabilities</p>
+                <p>3 Propulsion Assets 43 Vulnerabilities</p>
+                <p> Navigation System  15 Vulnerabilities</p>
+                <p> Communication Systems 5 Vulnerabilities</p>
+                <p> Steering Systems 45 Vulnerabilities</p>
+                <p> Minimum 2 Generators Available 18 Vulnerabilities</p>
+                <p> Small arms Capabilities  2 Vulnerabilities</p>
             </div>
             <div class="carousel-item jumbotron">
                 <h3 class="text-center">Wartime Training Exercises</h3>
             </div>
             <div class="carousel-item jumbotron">
-                <h3 class="text-center">Flight Operations-</h3>
+                <h3 class="text-center">Flight Operations</h3>
             </div>
         </div>
 

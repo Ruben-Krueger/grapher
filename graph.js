@@ -17,7 +17,14 @@ function Component(type, id, x, y, result, color, critical) {
     this.size = 0.5;
     this.vulnerability = result;
     this.critical = critical;
+}
 
+function Edge(id, source, target, size, color) {
+    this.is = id;
+    this.source = source;
+    this.target = target;
+    this.size = size;
+    this.color = color;
 }
 
 
@@ -33,7 +40,6 @@ var plc2 = new Component("PLC", "PLC 2", 100, 150, "Unknown", "darkcyan", "False
 var plc3 = new Component("PLC", "PLC 3", 50, 200, "Unknown", "darkcyan", "False");
 var plc4 = new Component("PLC", "PLC 4", 80, 300, "Unknown", "darkcyan", "False");
 
-
 g.nodes.push(switch1);
 g.nodes.push(switch2);
 g.nodes.push(switch3);
@@ -43,6 +49,11 @@ g.nodes.push(plc1);
 g.nodes.push(plc2);
 g.nodes.push(plc3);
 g.nodes.push(plc4);
+
+var e1 = new Edge("e1", "PLC 4", "Generator 2", 0.5, "grey");
+
+g.edges.push(e1);
+
 
 s = new sigma({
     graph: g,
