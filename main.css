@@ -157,7 +157,10 @@ canvas {
     /* make sure we contain the floats */
     overflow: auto;
 
-    margin-left: auto;
+    margin-left: 80px;
 }
 
+.commander-key {
+    width: 300px;
+}
 
