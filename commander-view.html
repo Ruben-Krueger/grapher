@@ -1,60 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mission Critical</title>
-    <script src="src/sigma.core.js"></script>
-    <script src="src/conrad.js"></script>
-    <script src="src/utils/sigma.utils.js"></script>
-    <script src="src/utils/sigma.polyfills.js"></script>
-    <script src="src/sigma.settings.js"></script>
-    <script src="src/classes/sigma.classes.dispatcher.js"></script>
-    <script src="src/classes/sigma.classes.configurable.js"></script>
-    <script src="src/classes/sigma.classes.graph.js"></script>
-    <script src="src/classes/sigma.classes.camera.js"></script>
-    <script src="src/classes/sigma.classes.quad.js"></script>
-    <script src="src/classes/sigma.classes.edgequad.js"></script>
-    <script src="src/captors/sigma.captors.mouse.js"></script>
-    <script src="src/captors/sigma.captors.touch.js"></script>
-    <script src="src/renderers/sigma.renderers.canvas.js"></script>
-    <script src="src/renderers/sigma.renderers.webgl.js"></script>
-    <script src="src/renderers/sigma.renderers.svg.js"></script>
-    <script src="src/renderers/sigma.renderers.def.js"></script>
-    <script src="src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
-    <script src="src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
-    <script src="src/renderers/webgl/sigma.webgl.edges.def.js"></script>
-    <script src="src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
-    <script src="src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.labels.def.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edges.def.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
-    <script src="src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
-    <script src="src/renderers/svg/sigma.svg.utils.js"></script>
-    <script src="src/renderers/svg/sigma.svg.nodes.def.js"></script>
-    <script src="src/renderers/svg/sigma.svg.edges.def.js"></script>
-    <script src="src/renderers/svg/sigma.svg.edges.curve.js"></script>
-    <script src="src/renderers/svg/sigma.svg.labels.def.js"></script>
-    <script src="src/renderers/svg/sigma.svg.hovers.def.js"></script>
-    <script src="src/middlewares/sigma.middlewares.rescale.js"></script>
-    <script src="src/middlewares/sigma.middlewares.copy.js"></script>
-    <script src="src/misc/sigma.misc.animation.js"></script>
-    <script src="src/misc/sigma.misc.bindEvents.js"></script>
-    <script src="src/misc/sigma.misc.bindDOMEvents.js"></script>
-    <script src="src/misc/sigma.misc.drawHovers.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <title>Commander View - Mission Critical</title>
     <link rel="stylesheet" href="main.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
 </head>
 
 <body>
@@ -67,19 +22,12 @@
 
 <div class="container">
     <div class="top-panel">
-        <span class="h1">Mission: Minesweeping </span>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#help">
-            HELP
-        </button>
+        <span class="h1">Mission View</span>
         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#load">
             LOAD NEW DATA
         </button>
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#Modal-vert-center-demo">
-            VIEW CONNECTIONS
-        </button>
-        <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#Modal-vert-center-demo">
-            PING
+        <button type="button" class="btn btn-primary float-right btn-space" data-toggle="modal" data-target="#help">
+            HELP
         </button>
     </div>
 
@@ -105,7 +53,6 @@
     </div>
 
 
-
     <!-- file Modal -->
     <div class="modal fade" id="load" tabindex="-1" role="dialog" aria-labelledby="Load New File" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -127,67 +74,48 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="Modal-vert-center-demo" tabindex="-1" role="dialog" aria-labelledby="Modal-vert-center-demo-label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="Modal-vert-center-demo-label">Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ..
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
 
-                </div>
+    <div id="demo" class="carousel slide" data-ride="carousel" data-interval ="false">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active jumbotron">
+                <h3 class="text-center">Freedom of Navigation Operations</h3>
+                <h3>Known vulnerabilities </h3>
+            </div>
+            <div class="carousel-item jumbotron">
+                <h3 class="text-center">Wartime Training Exercises</h3>
+            </div>
+            <div class="carousel-item jumbotron">
+                <h3 class="text-center">Flight Operations-</h3>
             </div>
         </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
 
-
-    <div class="side-panel jumbotron">
-        <h3 class="text-center">Missions Components</h3>
-        <h4 id="m1">Escort</h4>
-        <h4 id="m2">Patrol South China Sea</h4>
-        <h4 id="m3">Resupply</h4>
     </div>
 
-    <div class="right-panel jumbotron">
-        <h3 class="text-center">Settings</h3>
-        <!--<div class="slidecontainer">-->
-        <!--<input type="range" min="1" max="3" value="2" class="slider" id="myRange">-->
-        <!--<p><strong>Abstract &nbsp; Detailed</strong></p>-->
-        <!--</div>-->
-    </div>
-
-    <div class="right-panel bottom jumbotron">
-        <h3 class="text-center">Key</h3>
-        <span>Switch</span><br>
-        <span style="color: darkcyan">LPC</span><br>
-        <span style="color: darkred">Server</span><br>
-        <span style="color: chocolate">Generator</span>
-    </div>
-    <!--<img src="ship.jpg" alt="Ship">-->
-</div>
 
 
 <div id="graph-container"></div>
 
 <script src ="commander.js"></script>
+
 <script>
-
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-
-    // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = function() {
-        output.innerHTML = this.value;
-    };
-
 
 </script>
 
