@@ -32,13 +32,19 @@ var switch1 = new Component("Switch", "Switch 1", 100, 100, "Unknown", "black", 
 var switch2 = new Component("Switch", "Switch 2", 200, 100, "Unknown", "black", "False");
 var switch3 = new Component("Switch", "Switch 3", 200, 200, "Unknown", "black", "False");
 
-var generator1 = new Component("Generator", "Generator 1", 250, 150, "Unknown", "chocolate", "True");
-var generator2 = new Component("Generator", "Generator 2", 250, 300, "Unknown", "chocolate", "False");
+var generator1 = new Component("Generator", "Generator 1", 250, 150, "Unsecured controller", "chocolate", "True");
+var generator2 = new Component("Generator", "Generator 2", 250, 300, "Unsecured controller", "chocolate", "True");
 
-var plc1 = new Component("PLC", "PLC 1", 75, 50, "Unknown", "darkcyan", "False");
-var plc2 = new Component("PLC", "PLC 2", 100, 150, "Unknown", "darkcyan", "False");
-var plc3 = new Component("PLC", "PLC 3", 50, 200, "Unknown", "darkcyan", "False");
-var plc4 = new Component("PLC", "PLC 4", 80, 300, "Unknown", "darkcyan", "False");
+var plc1 = new Component("PLC", "PLC 1", 75, 50, "Default password", "darkcyan", "False");
+var plc2 = new Component("PLC", "PLC 2", 100, 150, "Default password", "darkcyan", "False");
+var plc3 = new Component("PLC", "PLC 3", 50, 200, "Default password", "darkcyan", "False");
+var plc4 = new Component("PLC", "PLC 4", 80, 300, "Default password", "darkcyan", "False");
+
+var server1 =  new Component("Server", "Server 1", 135, 135, "Unsecured FTP", 'darkred', "true")
+var server2 =  new Component("Server", "Server 2", 70, 135, "Unsecured FTP", 'darkred', "true")
+
+var nav =  new Component("Nav", "Nav System Interface", 400, 400, "Unknown", 'black', "true")
+
 
 g.nodes.push(switch1);
 g.nodes.push(switch2);
@@ -49,10 +55,14 @@ g.nodes.push(plc1);
 g.nodes.push(plc2);
 g.nodes.push(plc3);
 g.nodes.push(plc4);
+g.nodes.push(server1);
+g.nodes.push(server2);
+g.nodes.push(nav);
+
 
 var e1 = new Edge("e1", "PLC 4", "Generator 2", 0.5, "grey");
 
-g.edges.push(e1);
+// g.edges.push(e1);
 
 
 s = new sigma({
