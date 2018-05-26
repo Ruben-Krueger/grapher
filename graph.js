@@ -8,7 +8,7 @@ var i,
         edges: []
     };
 
-function Component(type, id, x, y, result, color, critical) {
+function Component(id, x, y, result, color, critical) {
     this.label = id;
     this.id = id;
     this.x = x;
@@ -28,22 +28,22 @@ function Edge(id, source, target, size, color) {
 }
 
 
-var switch1 = new Component("Switch", "Switch 1", 100, 100, "Old firmware", "black", "False");
-var switch2 = new Component("Switch", "Switch 2", 200, 100, "Old firmware", "black", "False");
-var switch3 = new Component("Switch", "Switch 3", 200, 200, "Old firmware", "black", "False");
+var switch1 = new Component("Switch 1", 100, 100, "Old firmware", "black", "False");
+var switch2 = new Component("Switch 2", 200, 100, "Old firmware", "black", "False");
+var switch3 = new Component("Switch 3", 200, 200, "Old firmware", "black", "False");
 
-var generator1 = new Component("Generator", "Generator 1", 250, 150, "Unsecured controller", "chocolate", "True");
-var generator2 = new Component("Generator", "Generator 2", 250, 300, "Unsecured controller", "chocolate", "True");
+var generator1 = new Component("Generator 1", 250, 150, "Unsecured controller", "chocolate", "True");
+var generator2 = new Component("Generator 2", 250, 300, "Unsecured controller", "chocolate", "True");
 
-var plc1 = new Component("PLC", "PLC 1", 75, 50, "Default password", "darkcyan", "False");
-var plc2 = new Component("PLC", "PLC 2", 100, 150, "Default password", "darkcyan", "False");
-var plc3 = new Component("PLC", "PLC 3", 50, 200, "Default password", "darkcyan", "False");
-var plc4 = new Component("PLC", "PLC 4", 80, 300, "Default password", "darkcyan", "False");
+var plc1 = new Component("PLC 1", 75, 50, "Default password", "darkcyan", "False");
+var plc2 = new Component("PLC 2", 100, 150, "Default password", "darkcyan", "False");
+var plc3 = new Component("PLC 3", 50, 200, "Default password", "darkcyan", "False");
+var plc4 = new Component("PLC 4", 80, 300, "Default password", "darkcyan", "False");
 
-var server1 =  new Component("Server", "Server 1", 135, 135, "Unsecured FTP", 'darkred', "true")
-var server2 =  new Component("Server", "Server 2", 70, 135, "Unsecured FTP", 'darkred', "true")
+var server1 =  new Component("Server 1", 135, 135, "Unsecured FTP", 'darkred', "true")
+var server2 =  new Component("Server 2", 70, 135, "Unsecured FTP", 'darkred', "true")
 
-var nav =  new Component("Nav", "Nav System Interface", 400, 400, "No authentification", 'black', "true")
+var nav =  new Component("Nav System Interface", 400, 400, "No authentification", 'black', "true")
 
 
 g.nodes.push(switch1);
@@ -60,15 +60,46 @@ g.nodes.push(server2);
 g.nodes.push(nav);
 
 
-var e1 = new Edge("e1", "PLC 4", "Generator 2", 0.5, "grey");
+// var e1 = new Edge("e1", "PLC 4", "Generator 2", 0.5, "grey");
+// g.edges.push(e1);
+
+
+
 
 g.edges.push({
-    id: 'n' + i,
-    label: 'Node ' + i,
-    x: Math.random(),
-    y: Math.random(),
-    size: Math.random(),
-    color: '#666'
+    id: '1',
+    source: 'PLC 4',
+    target: 'Generator 2',
+    size: 0.5,
+    color: 'grey'
+});
+g.edges.push({
+    id: '2',
+    source: 'PLC 4',
+    target: 'PLC 3',
+    size: 0.5,
+    color: 'black'
+});
+g.edges.push({
+    id: '3',
+    source: 'Server 1',
+    target: 'PLC 2',
+    size: 0.5,
+    color: 'grey'
+});
+g.edges.push({
+    id: '4',
+    source: 'Switch 2',
+    target: 'Generator 1',
+    size: 0.5,
+    color: 'grey'
+});
+g.edges.push({
+    id: '5',
+    source: 'Server 1',
+    target: 'Server 2',
+    size: 0.5,
+    color: 'grey'
 });
 
 
