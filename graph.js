@@ -28,9 +28,9 @@ function Edge(id, source, target, size, color) {
 }
 
 
-var switch1 = new Component("Switch", "Switch 1", 100, 100, "Unknown", "black", "False");
-var switch2 = new Component("Switch", "Switch 2", 200, 100, "Unknown", "black", "False");
-var switch3 = new Component("Switch", "Switch 3", 200, 200, "Unknown", "black", "False");
+var switch1 = new Component("Switch", "Switch 1", 100, 100, "Old firmware", "black", "False");
+var switch2 = new Component("Switch", "Switch 2", 200, 100, "Old firmware", "black", "False");
+var switch3 = new Component("Switch", "Switch 3", 200, 200, "Old firmware", "black", "False");
 
 var generator1 = new Component("Generator", "Generator 1", 250, 150, "Unsecured controller", "chocolate", "True");
 var generator2 = new Component("Generator", "Generator 2", 250, 300, "Unsecured controller", "chocolate", "True");
@@ -43,7 +43,7 @@ var plc4 = new Component("PLC", "PLC 4", 80, 300, "Default password", "darkcyan"
 var server1 =  new Component("Server", "Server 1", 135, 135, "Unsecured FTP", 'darkred', "true")
 var server2 =  new Component("Server", "Server 2", 70, 135, "Unsecured FTP", 'darkred', "true")
 
-var nav =  new Component("Nav", "Nav System Interface", 400, 400, "Unknown", 'black', "true")
+var nav =  new Component("Nav", "Nav System Interface", 400, 400, "No authentification", 'black', "true")
 
 
 g.nodes.push(switch1);
@@ -62,7 +62,14 @@ g.nodes.push(nav);
 
 var e1 = new Edge("e1", "PLC 4", "Generator 2", 0.5, "grey");
 
-// g.edges.push(e1);
+g.edges.push({
+    id: 'n' + i,
+    label: 'Node ' + i,
+    x: Math.random(),
+    y: Math.random(),
+    size: Math.random(),
+    color: '#666'
+});
 
 
 s = new sigma({
